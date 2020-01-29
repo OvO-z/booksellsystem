@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="baseeureka" />
+        <module name="basehystrix" />
+        <module name="baseturbina" />
+        <module name="basezipkin" />
+        <module name="basezuul" />
+        <module name="bookclient" />
+        <module name="bookdomain" />
+        <module name="bookrestapi" />
+        <module name="orderdomain" />
+        <module name="orderobject" />
+        <module name="orderrestapi" />
+        <module name="redomain" />
+        <module name="rerestapi" />
+        <module name="userauth" />
+        <module name="userdomain" />
+        <module name="userrest" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="admindomain" target="1.8" />
+      <module name="adminmicroserver" target="1.8" />
+      <module name="adminsso" target="1.8" />
+      <module name="base" target="1.5" />
+      <module name="base-eureka" target="1.8" />
+      <module name="baseauth" target="1.8" />
+      <module name="baseconfig" target="1.8" />
+      <module name="book-client" target="1.8" />
+      <module name="bookmicroservice" target="1.8" />
+      <module name="bookobject" target="1.8" />
+      <module name="oauth" target="1.8" />
+      <module name="user-restapi" target="1.8" />
+      <module name="userclient" target="1.8" />
+      <module name="usermicroservice" target="1.8" />
+      <module name="userrestapi" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="base-eureka" options="-parameters" />
+      <module name="baseconfig" options="" />
+      <module name="baseeureka" options="" />
+      <module name="basehystrix" options="" />
+      <module name="baseturbina" options="" />
+      <module name="basezipkin" options="" />
+      <module name="bookclient" options="" />
+      <module name="bookdomain" options="" />
+      <module name="bookobject" options="" />
+      <module name="bookrestapi" options="" />
+      <module name="user-restapi" options="" />
+      <module name="userauth" options="" />
+      <module name="userdomain" options="" />
+      <module name="userrestapi" options="" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bss.re.domain.dao.ReDao">
+    <resultMap id="users" type="com.bss.re.domain.dto.UserBook" extends="com.bss.re.domain.mapper.UserMapper.BaseResultMap">
+        <collection property="books" resultMap="com.bss.re.domain.mapper.ReMapper.BaseResultMap"
+                    columnPrefix="book_"
+        >
+        </collection>
+    </resultMap>
+    <select id="listWithUsers" resultMap="users" parameterType="java.lang.String">
+        select
+          r1.id,
+          r2.isbn as book_isbn,
+          r2.rate as book_rate
+        from user r1 left join re r2 on r1.id = r2.userId
+        where r1.id not like CONCAT('%',#{userId},'%')
+    </select>
+</mapper>

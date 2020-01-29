@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-microserver" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-microserver/base-config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-microserver/base-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-microserver/base-hystrix" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-microserver/base-turbina" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-microserver/base-zipkin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base-microserver/base-zuul" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/book-microservice" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/book-microservice/book-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/book-microservice/book-domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/book-microservice/book-restapi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-microservice" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-microservice/order-domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-microservice/order-object" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-microservice/order-restapi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/recommendation" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/recommendation-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/recommendation-system/re-domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/recommendation-system/re-restapi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-microservice" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-microservice/user-auth" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-microservice/user-domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-microservice/user-rest" charset="UTF-8" />
+  </component>
+</project>

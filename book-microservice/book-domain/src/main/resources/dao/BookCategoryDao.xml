@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bss.book.domain.dao.BookCategoryDao">
+    <resultMap id="listWithChildrenMap" type="com.bss.book.domain.dto.BookCategoryWithChildrenItem"
+        extends="com.bss.book.domain.mapper.BookCategoryMapper.BaseResultMap">
+        <collection property="children" resultMap="com.bss.book.domain.mapper.BookCategoryMapper.BaseResultMap"
+            columnPrefix="child_"
+        ></collection>
+    </resultMap>
+    <select id="listWithChildren" resultMap="listWithChildrenMap">
+select
+            c1.id,
+            c1.name,
+            c1.level,
+            c2.id  as child_id,
+            c2.name as child_name,
+            c2.level as child_level
+        from book_category c1 left join book_category c2 on c1.id = c2.parent_id
+        where c1.parent_id = 0 and c1.id != 0
+    </select>
+
+    <select id="listAll" resultType="com.bss.book.domain.model.BookCategory">
+        select
+          c.id,c.name,c.level,c.bookCount,c.description,c.keywords
+          from book_category c
+          where c.id != 0
+    </select>
+</mapper>

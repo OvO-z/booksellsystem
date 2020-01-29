@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bss.book.domain.dao.BookDao">
+    <resultMap id="bookMap" type="com.bss.book.domain.model.Book">
+        <id property="isbn" column="isbn"/>
+        <result property="bookName" column="book_name"/>
+        <result property="price" column="price"/>
+        <result property="authorName" column="author_name"/>
+        <result property="description" column="description"/>
+        <result property="pages" column="pages"/>
+        <result property="pic" column="pic"/>
+        <result property="press" column="press"/>
+        <result property="publishStatus" column="publish_status"/>
+        <result property="publishTime" column="publish_time"/>
+        <result property="sale" column="sale"/>
+        <result property="stock" column="stock"/>
+        <result property="verifyStatus" column="verify_status"/>
+        <result property="authorId" column="author_id"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="albumPic" column="albumPic"/>
+    </resultMap>
+    <select id="listByQuery" resultMap="bookMap">
+select
+            b.isbn,
+            b.book_name,
+            b.price,
+            b.author_name,
+            b.description,
+            b.pages,
+            b.pic,
+            b.press,
+            b.publish_status,
+            b.publish_time,
+            b.sale,
+            b.stock,
+            b.verify_status,
+            b.author_id,
+            b.category_id,
+            b.album_pic
+        from book b
+        <if test="categoryId != null">
+        left join book_category c on c.parent_id = #{categoryId} or c.id = #{categoryId}
+        </if>
+        where 1=1
+        <if test="categoryId != null">
+            and c.id = b.category_id
+        </if>
+        <if test="publishStatus != null">
+            and b.publish_status = #{publishStatus}
+        </if>
+        <if test="verifyStatus != null">
+            and b.verify_status = #{verifyStatus}
+        </if>
+        <if test="keywords != null and keywords != ''">
+            and b.book_name like concat('%', #{keywords},'%')
+        </if>
+        <if test="isbn != null">
+            and b.isbn = #{isbn}
+        </if>
+    </select>
+    <update id="updateCount">
+        update book set stock = stock - #{count,jdbcType=INTEGER} where isbn = #{id, jdbcType=BIGINT}
+    </update>
+    <update id="cancel">
+        update book set stock = stock + #{count,jdbcType=INTEGER} where isbn = #{id, jdbcType=BIGINT}
+    </update>
+</mapper>

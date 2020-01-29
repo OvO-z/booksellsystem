@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: com.bss.user.oauth.config
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://gitee.com/chenshaojian/base-com.bss.user.oauth.config-repo.git
+          username:
+          password:
+
+  rabbitmq:
+    addresses: amqp://localhost:5672
+    username: guest
+    password: guest

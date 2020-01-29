@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bss.order.domain.dao.OrderDao">
+    <insert id="insertListOrderItem" parameterType="java.util.List">
+        insert into order_item
+        (order_id,
+        order_sn,
+        product_id,
+        product_name,
+        product_pic,
+        product_price,
+        product_count
+        ) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.orderId, jdbcType=BIGINT},
+            #{item.orderSn, jdbcType=BIGINT},
+            #{item.productId, jdbcType=BIGINT},
+            #{item.productName,jdbcType=VARCHAR},
+            #{item.productPic,jdbcType=VARCHAR},
+            #{item.productPrice},
+            #{item.productCount}
+            )
+        </foreach>
+    </insert>
+    <resultMap id="orderMap" type="com.bss.order.object.model.Orders">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="member_id" jdbcType="BIGINT" property="memberId" />
+        <result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="member_username" jdbcType="VARCHAR" property="memberUsername" />
+        <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+        <result column="pay_type" jdbcType="INTEGER" property="payType" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+        <result column="receiver_phone" jdbcType="VARCHAR" property="receiverPhone" />
+        <result column="receiver_address" jdbcType="VARCHAR" property="receiverAddress" />
+        <result column="note" jdbcType="VARCHAR" property="note" />
+        <result column="confirm_status" jdbcType="INTEGER" property="confirmStatus" />
+        <result column="delete_status" jdbcType="INTEGER" property="deleteStatus" />
+        <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+        <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
+        <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    </resultMap>
+    <select id="listAll" resultMap="orderMap">
+        select  id, member_id, order_sn, create_time, member_username, total_amount, pay_type, status,
+    receiver_name, receiver_phone, receiver_address, note, confirm_status, delete_status,
+    payment_time, receive_time, comment_time, modify_time
+    from orders
+    where 1=1
+        <if test="orderSn != null and orderSn != ''">
+            and order_sn = #{orderSn}
+        </if>
+        <if test="createTime != null and createTime != ''">
+            and create_time LIKE concat(#{createTime},'%')
+        </if>
+        <if test="receiverName != null and receiverName !=''">
+            and (
+            receiver_name LIKE concat('%',#{receiverName},'%')
+            )
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+    </select>
+
+    <resultMap id="listItem" type="com.bss.order.domain.dto.OrderWithItem"
+        extends="com.bss.order.domain.mapper.OrdersMapper.BaseResultMap"
+    >
+        <collection property="items" resultMap="com.bss.order.domain.mapper.OrderItemMapper.BaseResultMap"
+                    columnPrefix="child_"
+        ></collection>
+    </resultMap>
+
+    <select id="listWithItem" resultMap="listItem">
+        select
+        o1.*,
+        o2.product_id as child_product_id,
+        o2.product_name as child_product_name,
+        o2.product_pic as child_product_pic,
+        o2.product_price as child_product_price,
+        o2.product_count as child_product_count
+        from orders o1 left join order_item o2 on o1.id = o2.order_id
+        where o1.member_id = #{id}
+    </select>
+</mapper>
